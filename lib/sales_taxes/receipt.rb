@@ -9,13 +9,14 @@ module SalesTaxes
     end
 
     def call
-      to_s
+      format_receipt
     end
 
     private
+
     attr_reader :items
 
-    def to_s
+    def format_receipt
       lines = items.map { |item| item_line(item) }
       lines << format("Sales Taxes: %.2f", total_taxes_cents / 100.0)
       lines << format("Total: %.2f", total_cents / 100.0)
