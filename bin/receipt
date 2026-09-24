@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+begin
+  input = ARGF.read
+  puts input
+rescue EOFError
+  exit
+end
+
