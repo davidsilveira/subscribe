@@ -5,10 +5,10 @@ require_relative '../lib/sales_taxes'
 begin
   input = ARGF.read
 
-  sales_taxes = SalesTaxes::InputParser.parse(input)
-  sales_taxes.each do |input_line|
-    puts "#{input_line.quantity} #{input_line.name} at #{input_line.price} #{input_line.imported? ? 'imported' : ''}"
-  end
+  orders_items = SalesTaxes::InputParser.parse(input)
+  receipt = SalesTaxes::Receipt.new(orders_items)
+
+  puts receipt.call
 rescue EOFError
   exit
 end
