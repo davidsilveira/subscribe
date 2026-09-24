@@ -1,8 +1,14 @@
 #!/usr/bin/env ruby
 
+require_relative '../lib/sales_taxes'
+
 begin
   input = ARGF.read
-  puts input
+
+  sales_taxes = SalesTaxes::InputParser.parse(input)
+  sales_taxes.each do |input_line|
+    puts "#{input_line.quantity} #{input_line.name} at #{input_line.price} #{input_line.imported? ? 'imported' : ''}"
+  end
 rescue EOFError
   exit
 end
